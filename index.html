@@ -6,16 +6,19 @@
   <meta name="viewport"
     content="width=device-width, shrink-to-fit=0, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Spatial Audio</title>
-  <script src="https://cdn.jsdelivr.net/npm/phaser@3.24.1/dist/phaser-arcade-physics.min.js"></script>
+  <script src="libs/phaser.min.js"></script>
   <script type="module" src="js/index.js"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/main.css">
+  <link href="css/all.min.css" rel="stylesheet" />
+  <link href="webfonts/NotoSans-Regular.ttf" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
 </head>
 
 <body>
-  <div id="space"></div>
-
+  <div class="container">
+    <div id="space"></div>
+    <textarea name="chat" id="chat" readonly></textarea>
+    <input type="text" id="message" name="message">
+  </div>
   <div hidden>
     <button type="button" id="connect" disabled>Connect</button>
     <button type="button" id="leave" disabled>Leave</button>

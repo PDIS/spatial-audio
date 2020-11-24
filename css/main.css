@@ -21,6 +21,16 @@ body {
   column-gap: 1em; */
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+#message {
+  grid-column-start: 1; 
+  grid-column-end: 4
+}
+
 .user {
   position: relative;
   width: 10em;

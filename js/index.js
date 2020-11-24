@@ -21,6 +21,19 @@ const client = new CallaClient(JITSI_HOST, JVB_HOST, JVB_MUC);
 
 const users = new Map();
 
+var message = document.getElementById("message");
+
+// Execute a function when the user releases a key on the keyboard
+message.addEventListener("keyup", function (event) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (event.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    client.sendTextMessage(controls.userName.value + ':' + message.value)
+  }
+});
+
 (async function () {
   deviceSelector(
     true,
@@ -75,7 +88,7 @@ function deviceSelector(addNone, select, values, preferredDevice, onSelect) {
 controls.connect.disabled = false;
 
 
-controls.connect.addEventListener("click", connect);
+/* controls.connect.addEventListener("click", connect);
 function connect() {
   const roomName = controls.roomName.value;
   const userName = controls.userName.value;
@@ -96,10 +109,9 @@ function connect() {
   controls.roomName.disabled = true;
   controls.userName.disabled = true;
   controls.connect.disabled = true;
-  /* client.startAudio(); */
 
   client.join(roomName, userName);
-}
+} */
 
 let timer = null;
 client.addEventListener("videoConferenceJoined", (evt) => {
@@ -287,8 +299,8 @@ var SceneC = {
     });
     this.input.keyboard.on('keydown_RIGHT', function (event) {
       player.setPosition(player.x + 5, player.y)
-      setPosition(player.x + 5, player.y)
     });
+
   }
 }
 
