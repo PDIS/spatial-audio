@@ -2,7 +2,7 @@ import {
   CallaClient,
   canChangeAudioOutput
 } from "/libs/calla.js";
-import { JITSI_HOST, JVB_HOST, JVB_MUC } from "/utils/constants.js";
+import { JITSI_HOST, JVB_HOST, JVB_MUC, welcome, title, description1, description2 } from "/utils/config.js";
 /* import Scene from "/modules/scene.js" */
 import User from "/modules/user.js"
 import Table from "/modules/table.js"
@@ -21,9 +21,9 @@ const client = new CallaClient(JITSI_HOST, JVB_HOST, JVB_MUC);
 
 const users = new Map();
 
-var message = document.getElementById("message");
+/* var message = document.getElementById("message"); */
 
-// Execute a function when the user releases a key on the keyboard
+/* // Execute a function when the user releases a key on the keyboard
 message.addEventListener("keyup", function (event) {
   // Number 13 is the "Enter" key on the keyboard
   if (event.keyCode === 13) {
@@ -33,7 +33,7 @@ message.addEventListener("keyup", function (event) {
     client.sendTextMessage(controls.userName.value + ':' + message.value)
   }
 });
-
+ */
 (async function () {
   deviceSelector(
     true,
@@ -222,11 +222,12 @@ function preload() {
 }
 function create() {
   this.scale.on('resize', resize, this);
+
   /*   const floor = this.add.tileSprite(gameWidth / 2, gameHeight / 2, gameWidth, gameHeight, 'floor') */
-  const table1 = new Table('1', this, this.scale.width / 2 - 300, this.scale.height / 2 - 100)
-  const table2 = new Table('2', this, this.scale.width / 2 + 300, this.scale.height / 2 - 100)
-  const table3 = new Table('3', this, this.scale.width / 2 - 300, this.scale.height / 2 + 100)
-  const table4 = new Table('4', this, this.scale.width / 2 + 300, this.scale.height / 2 + 100)
+  /*   const table1 = new Table('1', this, this.scale.width / 2 - 300, this.scale.height / 2 - 100)
+    const table2 = new Table('2', this, this.scale.width / 2 + 300, this.scale.height / 2 - 100)
+    const table3 = new Table('3', this, this.scale.width / 2 - 300, this.scale.height / 2 + 100)
+    const table4 = new Table('4', this, this.scale.width / 2 + 300, this.scale.height / 2 + 100) */
 
   /*   this.input.on('pointerdown', function (pointer) {
       for (let user of users.values()) {
@@ -279,12 +280,14 @@ function resize(gameSize, baseSize, displaySize, resolution) {
 
 var SceneC = {
   key: 'SceneC',
-  preload: function preload() { this.load.image('clown', 'assets/clown.png'); },
+  preload: function preload() { this.load.image('clown', 'assets/clown.png'); this.load.image('sticky', 'assets/sticky.png') },
 
   create: function create() {
     const roomName = controls.roomName.value;
     const userName = controls.userName.value;
     client.join(roomName, userName);
+    console.log(this.scale)
+    let sticky = this.add.image(this.scale.width / 2, this.scale.height / 2, 'sticky')
     this.input.keyboard.on('keydown_UP', function (event) {
       player.setPosition(player.x, player.y - 5)
       setPosition(player.x, player.y - 5)
@@ -316,21 +319,34 @@ var SceneA = {
   },
   create: function create() {
     this.scale.on('resize', resize, this);
-    let og = this.add.text(570, 50, '開放政府協作會議', {
+    let welcome = this.add.text(570, 50, '歡迎來到第xx次開放政府協作會議', {
+      fontFamily: '"Noto Sans", sans-serif',
+      fontSize: '30px',
+      color: 'black'
+    })
+    const title = this.add.text(700, 150, '向海致敬', {
       fontFamily: '"Noto Sans", sans-serif',
       fontSize: '48px',
       color: 'black'
     })
-    let welcome = this.add.text(600, 150, '請選擇分組組別', {
+    const description1 = this.add.text(550, 350, '目前議程已到下半場分小組討論時間', {
       fontFamily: '"Noto Sans", sans-serif',
-      fontSize: '48px',
+      fontSize: '30px',
       color: 'black'
     })
+    const description2 = this.add.text(680, 450, '請點選進入以下分組', {
+      fontFamily: '"Noto Sans", sans-serif',
+      fontSize: '30px',
+      color: 'black'
+    })
+    const table1 = new Table('第一組', this, 300, 600)
+    const table2 = new Table('第二組', this, 800, 600)
+    const table3 = new Table('第三組', this, 1300, 600)
     /*   const floor = this.add.tileSprite(gameWidth / 2, gameHeight / 2, gameWidth, gameHeight, 'floor') */
-    const table1 = new Table('第一組', this, this.scale.width / 2 - 300, this.scale.height / 2 - 100)
-    const table2 = new Table('第二組', this, this.scale.width / 2 + 300, this.scale.height / 2 - 100)
-    const table3 = new Table('第三組', this, this.scale.width / 2 - 300, this.scale.height / 2 + 100)
-    const table4 = new Table('第四組', this, this.scale.width / 2 + 300, this.scale.height / 2 + 100)
+    /*  const table1 = new Table('第一組', this, this.scale.width / 2 - 300, this.scale.height / 2 - 100)
+     const table2 = new Table('第二組', this, this.scale.width / 2 + 300, this.scale.height / 2 - 100)
+     const table3 = new Table('第三組', this, this.scale.width / 2 - 300, this.scale.height / 2 + 100)
+     const table4 = new Table('第四組', this, this.scale.width / 2 + 300, this.scale.height / 2 + 100) */
 
     /*   this.input.on('pointerdown', function (pointer) {
         for (let user of users.values()) {
@@ -344,6 +360,12 @@ var SceneA = {
         }
       }, this) */
     table1.table.setInteractive().on('pointerdown', function (pointer) {
+      this.scene.scene.start('SceneC', { id: 2 });
+    });
+    table2.table.setInteractive().on('pointerdown', function (pointer) {
+      this.scene.scene.start('SceneC', { id: 2 });
+    });
+    table3.table.setInteractive().on('pointerdown', function (pointer) {
       this.scene.scene.start('SceneC', { id: 2 });
     });
   }

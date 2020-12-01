@@ -37,14 +37,14 @@ class User {
     this.name = name;
     this.pose = pose;
     this.scene = scene
-    this.avatar = scene.physics.add.image(0, 0, 'clown')
+    this.avatar = scene.add.circle(0, 0, 35, '0x8A0FB')
     this.avatar.setOrigin(0, 1);
     this.avatar.setScale(1, 1)
     this.username = scene.add.text(0, 0, name, {
       fontSize: '12px',
       color: '#000000'
     })
-    this.username.setOrigin(0, 5)
+    this.username.setOrigin(0, 3)
     this.avatarcontainer = scene.add.container(50, 50)
     this.avatarcontainer.add(this.avatar)
     this.avatarcontainer.add(this.username)
