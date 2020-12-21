@@ -1,5 +1,5 @@
 class User {
-  constructor(id, name, pose, isLocal, scene) {
+  constructor(id, name, pose, isLocal) {
     /**
      * The user's name.
      * @type {string} 
@@ -30,28 +30,17 @@ class User {
     this.container = document.createElement("div");
     this.container.className = "user";
     if (isLocal) {
-      this.container.className += " localUser";
-      name += " (Me)";
+      this.container.className = "localUser";
+      /* name += " (Me)"; */
     }
     this.id = id;
     this.name = name;
     this.pose = pose;
-    this.scene = scene
-    this.avatar = scene.add.circle(0, 0, 35, '0x8A0FB')
-    this.avatar.setOrigin(0, 1);
-    this.avatar.setScale(1, 1)
-    this.username = scene.add.text(0, 0, name, {
-      fontSize: '12px',
-      color: '#000000'
-    })
-    this.username.setOrigin(0, 3)
-    this.avatarcontainer = scene.add.container(50, 50)
-    this.avatarcontainer.add(this.avatar)
-    this.avatarcontainer.add(this.username)
+
   }
   dispose() {
     this.container.parentElement.removeChild(this.container);
-    this.avatarcontainer.destroy()
+
   }
   get name() {
     return this._name;
@@ -106,7 +95,7 @@ class User {
     this.container.style.left = (100 * this.pose.current.p.x + dx) + "px";
     this.container.style.zIndex = this.pose.current.p.y;
     this.container.style.top = (100 * this.pose.current.p.z + dy) + "px";
-    this.avatarcontainer.setPosition(100 * this.pose.current.p.x, 100 * this.pose.current.p.z)
+
   }
 }
 

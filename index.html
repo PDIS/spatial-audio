@@ -6,46 +6,69 @@
   <meta name="viewport"
     content="width=device-width, shrink-to-fit=0, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Spatial Audio</title>
-  <script src="libs/phaser.min.js"></script>
-  <script type="module" src="js/index.js"></script>
-  <link href="css/all.min.css" rel="stylesheet" />
-  <link href="webfonts/NotoSans-Regular.ttf" rel="stylesheet">
+  <link href="css/materialize.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500&family=Roboto&display=swap"
+    rel="stylesheet">
   <link href="css/main.css" rel="stylesheet">
+  <script src="js/materialize.min.js"></script>
+  <script type="module" src="js/index.js"></script>
 </head>
 
 <body>
-
-  <div id="space"></div>
-  <!--    <textarea name="chat" id="chat" readonly></textarea>
-    <input type="text" id="message" name="message"> -->
-
-  <div hidden>
-    <button type="button" id="connect" disabled>Connect</button>
-    <button type="button" id="leave" disabled>Leave</button>
+  <div class="container">
+    <div class="row">
+      <div class="col s12"></div>
+      <h4 id="welcome" class="center-align"></h4>
+    </div>
+    <div class="row">
+      <div class="col s12"></div>
+      <h3 id="title" class="center-align"></h3>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+      <div class="col s12"></div>
+      <h5 id="description1" class="center-align">目前議程已到下半場分小組討論時間</h5>
+    </div>
+    <div class="row">
+      <div class="col s12"></div>
+      <h5 id="description2" class="center-align">請點選進入以下分組</h5>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <div class="input-field">
+              <input value="user" id="username" type="text" class="validate">
+              <label class="active" for="username">使用者名稱</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" id="GroupWrapper">
+      <div class="col s12 m4 center-align">
+        <buutton id="group1" type="button" class="waves-effect waves-light light-blue darken-1 btn-large">
+          <h5>第一組</h5>
+          </button>
+      </div>
+      <div class="col s12 m4 center-align">
+        <buutton id="group2" type="button" class="waves-effect waves-light light-blue darken-1 btn-large">
+          <h5>第二組</h5>
+          </button>
+      </div>
+      <div class="col s12 m4 center-align">
+        <buutton id="group3" type="button" class="waves-effect waves-light light-blue darken-1 btn-large">
+          <h5>第三組</h5>
+          </button>
+      </div>
+    </div>
   </div>
-  <div class="fab-container">
-    <div class="fab fab-icon-holder">
-      <i class="fas fa-cog"></i>
-    </div>
-    <div class="fab-options">
-      <form id="controls">
-        <label for="roomName" style="display: none;">Room:</label>
-        <input id="roomName" style="display: none;" type="text" placeholder="(Required)" value="PDIS">
-
-        <label for="userName">Name:</label>
-        <input id="userName" placeholder="(Required)" type="text" value="User">
-
-        <label for="cams" style="display: none;">Video:</label>
-        <select id="cams" style="display: none;"></select>
-
-        <label for="mics">Mic:</label>
-        <select id="mics"></select>
-
-        <label for="speakers">Speakers:</label>
-        <select id="speakers"></select>
-
-      </form>
-    </div>
+  <div id="game">
+    <div id="photoContainer"></div>
+    <a class="btn-floating waves-effect waves-light teal" id="downloadButton">
+      <i class="material-icons">file_download</i>
+    </a>
   </div>
 </body>
 

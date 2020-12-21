@@ -1,50 +1,93 @@
 * {
-  box-sizing: border-box;
-  font-family: -apple-system, '.SFNSText-Regular', 'San Francisco', 'Roboto', 'Segoe UI', 'Helvetica Neue', 'Lucida Grande', sans-serif;
+  font-family: 'Roboto', 'Noto Sans TC', sans-serif;
 }
 
-html,
-body {
-  position: absolute;
+#welcome {
+  margin-top: 15vh;
+}
+
+#description1 {
+  margin-top: 5vh;
+}
+
+#GroupWrapper {
+  margin-top: 5vh;
+}
+
+#game {
   width: 100%;
   height: 100%;
-  margin: 0;
-  padding: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  display: none;
+  background-color: white
 }
 
-body {
-  display: grid;
-/*   grid-template-rows: 1fr auto auto auto;
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
-  row-gap: 1em;
-  column-gap: 1em; */
+.btn-large {
+  margin-top: 5vh
 }
 
-.container {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
+.card {
+  width: 50%;
+  margin: 0 auto;
 }
 
-#message {
-  grid-column-start: 1; 
-  grid-column-end: 4
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+  }
+}
+
+#photoContainer {
+  width: 80%;
+  height: 80%;
+  position: absolute;
+  margin-left: 10%;
+  margin-top: 5%;
+}
+
+#downloadButton {
+  position: fixed;
+  bottom: 2vh;
+  right: 2vw;
+}
+
+#hiddenImage {
+  display: none;
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
 
 .user {
+  display: flex;
   position: relative;
-  width: 10em;
-  border-width: 2px;
-  border-style: solid;
-  border-color: #888;
-  background-color: #eee;
-  padding: 5px;
-  box-shadow: rgba(0, 0, 0, 0.5) 5px 5px 10px;
+  justify-content: center;
+  align-items: center;
+  width: 0;
+  height: 0;
+  border-left: 2.5em solid transparent;
+  border-right: 2.5em solid transparent;
+  border-bottom: 5em solid #18A0FB;
 }
 
-.localUser {
-  border-color: #383;
-  background-color: #8e8;
+.localUser {  
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 5em;
+  height: 5em;
+  border-width: 1em;
+  border-style: solid;
+  border-radius: 50%;
+  border-color: #18A0FB;
+  background-color: #18A0FB;
 }
 
 .userName {
@@ -57,110 +100,4 @@ body {
 
 .localUser>.userVideo {
   transform: scaleX(-1);
-}
-
-#controls {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 0.5em;
-  column-gap: 0.5em;
-  width: 20vw;
-}
-
-#controls>label {
-  text-align: right;
-}
-
-#controls>select {
-  width: 100%;
-}
-
-#space {
-  background-color: #ccc;
-  border: inset 2px;
-  overflow: hidden;
-}
-
-footer {
-  text-align: right;
-  color: #333;
-  font-size: 75%;
-}
-
-.fab-container {
-  position: fixed;
-  top: 30vh;
-  right: 1vw;
-  z-index: 999;
-  cursor: pointer;
-}
-
-.fab-icon-holder {
-  width: 50px;
-  height: 50px;
-  border-radius: 100%;
-  background: #016fb9;
-
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-.fab-icon-holder:hover {
-  opacity: 0.8;
-}
-
-.fab-icon-holder i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 100%;
-  font-size: 25px;
-  color: #ffffff;
-}
-
-.fab {
-  width: 60px;
-  height: 60px;
-  background: teal;
-}
-
-.fab-options {
-  list-style-type: none;
-  margin: 0;
-
-  position: absolute;
-  bottom: 10px;
-  right: 70px;
-
-  opacity: 0;
-
-  transition: all 0.3s ease;
-  transform: scale(0);
-  transform-origin: 85% bottom;
-  background-color: white;
-}
-
-.fab:hover+.fab-options,
-.fab-options:hover {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.fab-options li {
-  display: flex;
-  justify-content: flex-end;
-  padding: 5px;
-}
-
-.fab-label {
-  padding: 2px 5px;
-  align-self: center;
-  user-select: none;
-  white-space: nowrap;
-  border-radius: 3px;
-  font-size: 16px;
-  background: #666666;
-  color: #ffffff;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-  margin-right: 10px;
 }
