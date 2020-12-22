@@ -30,7 +30,6 @@ const GameStart = (group) => {
   game.style.display = 'block'
   game.style['z-index'] = 9999
   const img = document.createElement("img");
-  img.crossOrigin = 'Anonymous'
   img.src = `https://photo.pdis.dev/api/group/${group}`
   photoContainer.appendChild(img);
   setInterval(() => {
