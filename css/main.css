@@ -94,6 +94,15 @@ img {
   text-align: center;
 }
 
+.user>.userName {
+  text-align: center;
+  display: table;
+  position: absolute;
+  width: 10em;
+  top: -2em;
+  
+}
+
 .userVideo {
   max-width: 100%;
 }

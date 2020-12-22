@@ -697,6 +697,15 @@ class Vector3 {
         this.y = v.y;
         this.z = v.z;
     }
+    lerp(v, alpha) {
+        this.x += (v.x - this.x) * alpha;
+        this.y += (v.y - this.y) * alpha;
+        this.z += (v.z - this.z) * alpha;
+        return this;
+    }
+    dot(v) {
+        return this.x * v.x + this.y * v.y + this.z * v.z;
+    }
 }
 
 /**
