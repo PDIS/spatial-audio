@@ -30,16 +30,29 @@ const GameStart = (group) => {
   game.style.display = 'block'
   game.style['z-index'] = 9999
   const img = document.createElement("img");
-  img.src = `https://photo.pdis.dev/group/${group}`
+  img.crossOrigin = 'Anonymous'
+  img.src = `https://photo.pdis.dev/api/group/${group}`
   photoContainer.appendChild(img);
   setInterval(() => {
-    img.src = `https://photo.pdis.dev/group/${group}`
+    img.src = `https://photo.pdis.dev/api/group/${group}`
   }, 60000)
   client.join(group, username.value);
 }
 
 downloadButton.addEventListener("click", () => {
-
+  const photoCanvas = document.createElement("canvas");
+  const img = document.querySelector("img");
+  photoCanvas.height = 2160
+  photoCanvas.width = 4096;
+  let photoContext = photoCanvas.getContext("2d");
+  photoContext.drawImage(img, 0, 0);
+  photoCanvas.toBlob((blob) => {
+    let data = window.URL.createObjectURL(blob);
+    let link = document.createElement("a");
+    link.href = data;
+    link.download = "photo.png";
+    link.click();
+  }, "image/png");
 });
 
 let timer = null;
