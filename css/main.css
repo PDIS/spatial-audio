@@ -23,11 +23,11 @@
   left: 0;
   position: fixed;
   display: none;
-  background-color: white
+  background-color: white;
 }
 
 .btn-large {
-  margin-top: 5vh
+  margin-top: 5vh;
 }
 
 .card {
@@ -55,6 +55,13 @@
   right: 2vw;
 }
 
+#configButton {
+  position: fixed;
+  bottom: 2vh;
+  left: 1vw;
+  display: none;
+}
+
 #hiddenImage {
   display: none;
 }
@@ -73,10 +80,10 @@ img {
   height: 0;
   border-left: 2.5em solid transparent;
   border-right: 2.5em solid transparent;
-  border-bottom: 5em solid #18A0FB;
+  border-bottom: 5em solid #18a0fb;
 }
 
-.localUser {  
+.localUser {
   display: flex;
   position: absolute;
   justify-content: center;
@@ -86,15 +93,15 @@ img {
   border-width: 1em;
   border-style: solid;
   border-radius: 50%;
-  border-color: #18A0FB;
-  background-color: #18A0FB;
+  border-color: #18a0fb;
+  background-color: #18a0fb;
 }
 
 .userName {
   text-align: center;
 }
 
-.user>.userName {
+.user > .userName {
   text-align: center;
   display: table;
   position: absolute;
@@ -106,6 +113,10 @@ img {
   max-width: 100%;
 }
 
-.localUser>.userVideo {
+.localUser > .userVideo {
   transform: scaleX(-1);
+}
+
+select {
+  display: inline-block;
 }

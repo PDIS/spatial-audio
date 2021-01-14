@@ -27,6 +27,10 @@ document.getElementById("group3").addEventListener("click", () => {
 });
 
 const GameStart = (group) => {
+  const queryString = window.location.search;
+  if (queryString.includes('admin')) {
+    configButton.style.display = 'inline'
+  }
   game.style.display = 'block'
   game.style['z-index'] = 9999
   const img = document.createElement("img");
@@ -113,7 +117,12 @@ function update() {
 game.addEventListener("click", (evt) => {
   const x = evt.clientX - game.offsetLeft;
   const y = evt.clientY - game.offsetTop;
-  setPosition(x, y);
+  if (x > (game.clientWidth - 100) && y > (game.clientHeight - 100)) {
+
+  } else {
+    setPosition(x, y);
+  }
+
 });
 
 function setPosition(x, y) {
@@ -128,6 +137,7 @@ client.addEventListener("displayNameChange", (evt) => {
   const { id, displayName } = evt;
   changeName(id, displayName);
 });
+
 function changeName(id, displayName) {
   if (users.has(id)) {
     const user = users.get(id);
@@ -139,9 +149,60 @@ client.addEventListener("videoChanged", (evt) => {
   const { id, stream } = evt;
   changeVideo(id, stream);
 });
+
 function changeVideo(id, stream) {
   if (users.has(id)) {
     const user = users.get(id);
     user.videoStream = stream;
   }
 }
+
+(async function () {
+  deviceSelector(
+    true,
+    controls.mics,
+    await client.getAudioInputDevicesAsync(),
+    await client.getPreferredAudioInputAsync(true),
+    (device) => client.setAudioInputDeviceAsync(device));
+  deviceSelector(
+    true,
+    controls.speakers,
+    await client.getAudioOutputDevicesAsync(),
+    await client.getPreferredAudioOutputAsync(true),
+    (device) => client.setAudioOutputDeviceAsync(device));
+  controls.speakers.disabled = !canChangeAudioOutput;
+})();
+
+function deviceSelector(addNone, select, values, preferredDevice, onSelect) {
+  if (addNone) {
+    const none = document.createElement("option");
+    none.text = "None";
+    select.append(none);
+  }
+  select.append(...values.map((value) => {
+    const opt = document.createElement("option");
+    opt.value = value.deviceId;
+    opt.text = value.label;
+    if (preferredDevice && preferredDevice.deviceId === value.deviceId) {
+      opt.selected = true;
+    }
+    return opt;
+  }));
+  select.addEventListener("input", () => {
+    let idx = select.selectedIndex;
+
+    // Skip the vestigial "none" item.
+    if (addNone) {
+      --idx;
+    }
+
+    const value = values[idx];
+    onSelect(value || null);
+  });
+  onSelect(preferredDevice);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.modal');
+  var instances = M.Modal.init(elems);
+});

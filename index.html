@@ -66,9 +66,25 @@
   </div>
   <div id="game">
     <div id="photoContainer"></div>
-    <a class="btn-floating waves-effect waves-light teal" id="downloadButton">
+    <a class="btn-floating waves-effect waves-light pink lighten-1 btn-large" id="downloadButton">
       <i class="material-icons">file_download</i>
     </a>
+    <a class="btn-floating waves-effect waves-light deep-orange modal-trigger btn-large" href="#configModal" id="configButton">
+      <i class="material-icons">settings</i>
+    </a>
+    <div id="configModal" class="modal">
+      <div class="modal-content">
+        <form id="controls">
+          <label for="mics">Mic:</label>
+          <select id="mics"></select>
+          <label for="speakers">Speakers:</label>
+          <select id="speakers"></select>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Done</a>
+      </div>
+    </div>
   </div>
 </body>
 
