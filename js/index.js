@@ -22,9 +22,9 @@ document.getElementById('group2').addEventListener('click', () => {
   GameStart('2')
 })
 
-document.getElementById('group3').addEventListener('click', () => {
+/* document.getElementById('group3').addEventListener('click', () => {
   GameStart('3')
-})
+}) */
 
 const GameStart = (group) => {
   const queryString = window.location.search
